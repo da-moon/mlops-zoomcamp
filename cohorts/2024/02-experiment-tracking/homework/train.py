@@ -38,6 +38,8 @@ def run_train(data_path: str):
 if __name__ == '__main__':
     mlflow.set_tracking_uri("sqlite:///mlflow.db")
     mlflow.set_experiment("nyc-taxi-experiment")
+    mlflow.autolog()
+
     with mlflow.start_run():
         mlflow.set_tag("developer", "da-moon")
         run_train()
