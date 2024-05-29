@@ -68,11 +68,13 @@ def run_register_model(data_path: str, top_n: int):
     )
     for run in runs:
         train_and_log_model(data_path=data_path, params=run.data.params)
+        model_uri=f"runs:/{run.info.run_id}/model"
+        mlflow.register_model( model_uri = model_uri,name=HPO_EXPERIMENT_NAME)
 
     # Select the model with the lowest test RMSE
-    experiment = client.get_experiment_by_name(EXPERIMENT_NAME)
+    # experiment = client.get_experiment_by_name(EXPERIMENT_NAME)
     # best_run = client.search_runs( ...  )[0]
-
+    # best_run = client.search_runs(  )[0]
     # Register the best model
     # mlflow.register_model( ... )
 
